@@ -1,0 +1,29 @@
+<nav *ngIf="(user$ | async) as user" class="pill-navbar">
+  <div class="pill-container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="assets/icons/bilanciere.png" alt="Bilanciere" />
+    </div>
+
+    <!-- Gruppo pill -->
+    <div class="pill-group" [class.open]="menuOpen">
+      <a routerLink="/dashboard" routerLinkActive="active" class="pill" (click)="closeMenu()">Dashboard</a>
+      <a routerLink="/workouts" routerLinkActive="active" class="pill" (click)="closeMenu()">Workouts</a>
+      <a routerLink="/exercise-library" routerLinkActive="active" class="pill" (click)="closeMenu()">Exercises</a>
+      <a routerLink="/profile" routerLinkActive="active" class="pill" (click)="closeMenu()">Profile</a>
+      <a routerLink="/settings" routerLinkActive="active" class="pill" (click)="closeMenu()">Settings</a>
+    </div>
+    
+    <div class="nav-widget">
+      <app-mini-widget></app-mini-widget>
+    </div>
+
+    <div class="hamburger" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+
+</nav>

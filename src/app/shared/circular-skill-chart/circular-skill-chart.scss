@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.3), rgba(173, 216, 230, 0.2));
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 16px;
+    flex: 1 1 300px;
+    min-width: 300px;
+    position: relative;
+  
+    .delete-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 18px;
+     
+    }
+  
+    .icon {
+      font-size: 2rem;
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  
+    .skill-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;   
+  
+      .skill-name {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #fff;
+      }
+  
+      .skill-bar-container {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+  
+        .skill-bar {
+          height: 20px;
+          width: 0%;
+          transition: width 1.5s ease-in-out;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,18 @@
+<div class="container">
+    <div
+      class="input-wrapper"
+      [ngClass]="{ 'focused': isFocused }"
+    >
+      <span class="icon">🔍</span>
+      <input
+        type="search"
+        placeholder="Search.."
+        [value]="searchInput"
+        (input)="onInputChange($event)"
+        (focus)="isFocused = true"
+        (blur)="isFocused = false"
+        autocomplete="off"
+      />
+    </div>
+  </div>
+  

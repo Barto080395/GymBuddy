@@ -1,0 +1,106 @@
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, rgba(18, 28, 47, 0.5), rgba(30, 42, 71, 0.5));
+    box-shadow: 0 10px 30px rgba(0,0,0,2);
+    text-align: center;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+  
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(41,128,255,0.3) 0%, transparent 70%);
+      transform: rotate(45deg);
+      z-index: 0;
+    }
+  
+    h2 {
+      position: relative;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      z-index: 1;
+      color: #2980ff;
+      text-shadow: 0 2px 6px rgba(0,0,0,2);
+    }
+  
+    form {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  
+      input {
+        padding: 12px 15px;
+        border-radius: 12px;
+        border: none;
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+        font-size: 1rem;
+        transition: 0.3s;
+        &:focus {
+          outline: 2px solid #2980ff;
+          background: rgba(255,255,255,0.15);
+        }
+        &::placeholder {
+          color: rgba(255,255,255,0.6);
+        }
+      }
+  
+      button {
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(45deg, #2980ff, #6ab3ff);
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(41,128,255,0.5);
+        }
+      }
+    }
+  
+    .error {
+      margin-top: 10px;
+      color: #ff6b6b;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+  
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #6ab3ff;
+      text-decoration: none;
+      transition: 0.3s;
+      &:hover {
+        color: #2980ff;
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 480px) {
+    .auth-container {
+      margin: 50px 20px;
+      padding: 30px 20px;
+      h2 { font-size: 1.5rem; }
+      form { gap: 15px; }
+    }
+  }

@@ -1,0 +1,102 @@
+<div class="dashboard">
+  <h2 *ngIf="userName">Benvenuto, {{ userName }}!</h2>
+  <p>Questa è la tua panoramica settimanale.</p>
+
+  <!-- Allenamento di oggi -->
+  <div *ngIf="getTodayWorkout()" class="today-workout">
+    <strong>Oggi:</strong> {{ getTodayWorkout()?.workout }} alle {{ getTodayWorkout()?.time }}
+  </div>
+
+  <!-- Prossimi allenamenti -->
+  <h3>Prossimi allenamenti</h3>
+  <div class="upcoming">
+    <div class="workout-card" *ngFor="let w of getRemainingWorkouts()">
+      <strong>{{ w.day }}:</strong> {{ w.workout }} alle {{ w.time }}
+      <img
+        *ngIf="getTimeInMinutes(w.time) < 60"
+        src="assets/icons/start.png"
+        alt="Orologio"
+        class="start-icon"
+      />
+    </div>
+  </div>
+
+  <!-- Statistiche rapide per gruppo muscolare -->
+  <h3>Statistiche rapide per gruppo muscolare</h3>
+  <div *ngFor="let group of statsByMuscle" class="muscle-group">
+    <h4>{{ group.muscle }}</h4>
+
+    <div class="stats">
+      <div class="stat-card" *ngFor="let s of group.stats" (click)="openMuscleModal(group)">
+        <i class="fa-solid fa-dumbbell"></i>
+        <strong>{{ s.label }}:</strong> {{ s.value }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Modale -->
+  <app-stats-modal
+    [title]="selectedMuscleStats?.muscle || ''"
+    [visible]="statsModalVisible"
+    (close)="closeModal()"
+  >
+    <div class="stats" *ngIf="selectedMuscleStats">
+      <div class="stat-card" *ngFor="let s of selectedMuscleStats.stats; let i = index">
+        <i class="fa-solid fa-dumbbell"></i>
+        <strong>{{ s.label }}:</strong>
+
+        <input type="text" [(ngModel)]="selectedMuscleStats.stats[i].value" class="stat-input" />
+      </div>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="close-btn" (click)="saveAndClose()">Salva</button>
+
+      <button class="close-btn" (click)="closeModal()">Chiudi</button>
+    </div>
+  </app-stats-modal>
+
+  <!-- Records Modale -->
+  <app-records-modal
+  title="Record personali"
+  [visible]="recordsModalVisible"
+  (close)="closeRecordsModal()"
+>
+  <div class="stats">
+    <div class="stat-card" *ngFor="let r of personalRecords; let i = index">
+      <i class="fa-solid fa-dumbbell"></i>
+      <strong>{{ r.exercise }}:</strong> <!-- solo label -->
+      <input [(ngModel)]="personalRecords[i].max" class="stat-input" /> <!-- solo input per max -->
+    </div>
+  </div>
+
+  <div class="modal-buttons">
+    <button class="close-btn" (click)="saveRecords()">Salva</button>
+    <button class="close-btn" (click)="closeRecordsModal()">Chiudi</button>
+  </div>
+</app-records-modal>
+
+  <!-- Massimali / record personali -->
+  <h3>Record personali</h3>
+  <div class="stats" (click)="openRecordsModal()">
+    <div class="stat-card" *ngFor="let r of personalRecords">
+      <strong>{{ r.exercise }}:</strong> {{ r.max }}
+    </div>
+  </div>
+
+  <!-- Badge / obiettivi -->
+  <h3>Badge & Obiettivi</h3>
+  <div class="badges">
+    <div class="badge-card" *ngFor="let b of badges">
+      <i class="fa-solid" [ngClass]="b.icon"></i> {{ b.label }}
+    </div>
+  </div>
+
+  <!-- Shortcuts -->
+  <h3>Scorciatoie rapide</h3>
+  <div class="shortcuts">
+    <button *ngFor="let s of shortcuts" [routerLink]="s.route">
+      <i class="fa-solid" [ngClass]="s.icon"></i> {{ s.label }}
+    </button>
+  </div>
+</div>

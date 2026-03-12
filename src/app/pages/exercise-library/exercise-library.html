@@ -1,0 +1,14 @@
+<div class="exercise-library-container">
+    <h1>Libreria Esercizi 🏋️‍♂️</h1>
+  
+    <app-accordion *ngFor="let group of muscleGroups" [title]="group">
+      <div class="exercise-grid">
+        <div class="exercise-card" *ngFor="let ex of getExercisesByGroup(group)">
+          <h2>{{ ex.name }}</h2>
+          <p *ngIf="ex.muscleGroup">Gruppo Muscolare: {{ ex.muscleGroup }}</p>
+          <p *ngIf="ex.equipment">Attrezzatura: {{ ex.equipment }}</p>
+          <img *ngIf="ex.gif" [src]="ex.gif" [alt]="ex.name" class="exercise-gif" height="50px" width="50px"/>
+        </div>
+      </div>
+    </app-accordion>
+  </div>

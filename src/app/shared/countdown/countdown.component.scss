@@ -1,0 +1,22 @@
+.countdown-container {
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  
+    .status {
+      margin: 5px 0;
+      font-size: 1rem;
+    }
+  
+    .finished {
+      color: #4caf50; // verde brillante quando finito
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+  }

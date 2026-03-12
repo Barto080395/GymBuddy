@@ -1,0 +1,17 @@
+<div class="widget-container">
+
+    <div class="avatar-wrapper" (click)="toggleMenu()">
+      <img 
+        [src]="avatar || 'assets/avatar/avatar3.jpg'" 
+        alt="avatar"
+        class="avatar"
+      />
+    </div>
+  
+    <div class="menu" *ngIf="menuOpen">
+      <ul>
+        <li (click)="logout()">🚪 Logout</li>
+      </ul>
+    </div>
+  
+  </div>

@@ -1,0 +1,54 @@
+<footer *ngIf="(user$ | async) as user" class="footer-container">
+
+    <div class="footer-grid">
+  
+      <!-- Logo -->
+      <div class="logo-section">
+        <img src="assets/icons/bilanciere.png" alt="Logo" width="100">
+  
+        <span class="slogan">
+          Train. Track. Improve.
+        </span>
+  
+        <p class="description">
+          Your personal fitness companion to track workouts
+          and improve your performance every day.
+        </p>
+      </div>
+  
+      <!-- Menu -->
+      <div class="menu-section">
+  
+        <h3 class="section-title">Menu</h3>
+  
+        <ul class="list">
+  
+          <li><a routerLink="/dashboard">📊 Dashboard</a></li>
+          <li><a routerLink="/workouts">🏋️ Workouts</a></li>
+          <li><a routerLink="/exercise-library">📚 Exercises</a></li>
+          <li><a routerLink="/profile">👤 Profile</a></li>
+          <li><a routerLink="/settings">⚙️ Settings</a></li>
+  
+        </ul>
+  
+      </div>
+  
+      <!-- Support -->
+      <div class="support-section">
+  
+        <h3 class="section-title">Support</h3>
+  
+        <ul class="list">
+          <li><a href="#">✉️ Contact</a></li>
+          <li><a href="#">🔒 Privacy Policy</a></li>
+        </ul>
+  
+      </div>
+  
+    </div>
+  
+    <div class="footer-bottom">
+      © 2026 Gym Buddy - App
+    </div>
+  
+  </footer>

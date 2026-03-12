@@ -1,0 +1,11 @@
+.chart-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  
+    canvas {
+      background: rgba(40, 40, 40, 0.85);
+      border-radius: 15px;
+      padding: 10px;
+    }
+  }

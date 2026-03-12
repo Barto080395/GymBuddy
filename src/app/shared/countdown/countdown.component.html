@@ -1,0 +1,13 @@
+<div class="countdown-container">
+    <ng-container *ngIf="!finished; else finishedTemplate">
+      <p class="status">
+        {{ exerciseName }} - Serie {{ currentSet }} / {{ sets }}
+      </p>
+      <p class="status" *ngIf="!isRest">💪 Esercizio: {{ minutes }}:{{ seconds | number:'2.0' }}</p>
+      <p class="status" *ngIf="isRest">⏱ Recupero: {{ minutes }}:{{ seconds | number:'2.0' }}</p>
+    </ng-container>
+  
+    <ng-template #finishedTemplate>
+      <p class="finished">Esercizio completato! ✅</p>
+    </ng-template>
+  </div>

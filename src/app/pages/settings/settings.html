@@ -1,0 +1,8 @@
+<div class="settings-container">
+    <h1>Impostazioni ⚙️</h1>
+  
+    <div class="setting-card" *ngFor="let s of settings">
+      <p>{{ s.label }}</p>
+      <input type="checkbox" [checked]="s.value" />
+    </div>
+  </div>

@@ -1,0 +1,102 @@
+/* Navbar container */
+.pill-navbar {
+  width: 100%;
+  background: #d6363689;
+  box-shadow: 0 8px 32px rgba(0,0,0,1);
+  //backdrop-filter: blur(12px);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  color: white;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+/* Logo a sinistra */
+.logo img {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.pill-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Gruppo pill */
+.pill-group {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Avatar / widget */
+.nav-widget {
+  margin-left: auto; /* ✅ spinge l'avatar a destra */
+  display: flex;
+  align-items: center;
+}
+
+/* Singola pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2.75rem;
+  background: rgba(211,125,12,0.5);
+  color: var(--bright-red);
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover,
+  &.active {
+    background: rgba(194,185,173,0.15);
+    box-shadow: 0 4px 12px rgba(194,185,173,0.2);
+  }
+}
+
+/* Hamburger */
+.hamburger {
+  display: none; /* nascosto su desktop */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  margin-right: 40px;
+
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .pill-group {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    background: rgba(30,30,30,0.5);
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    width: 200px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(194,185,173,0.5);
+  }
+
+  .pill-group.open {
+    transform: translateX(0);
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
