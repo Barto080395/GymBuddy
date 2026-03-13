@@ -1,6 +1,6 @@
 .auth-container {
   max-width: 600px;
-  margin: -70px auto;
+  margin: 50px auto;
   padding: 40px 30px;
   border-radius: 20px;
   background-color: rgba(15, 27, 35, 0.8);
@@ -132,5 +132,56 @@
         flex-direction: column; /* su mobile, un campo per riga */
       }
     }
+  }
+}
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 4px;
+  background-clip: text;
+  color: rgba(118, 82, 9, 2);
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.8),
+    0 0 20px rgba(255,255,255,0.6),
+    0 0 40px rgba(0,0,0,2),
+    0 0 60px rgba(0,0,0,2),
+    0 5px 20px rgba(0,0,0,2);
+
+  animation: glow 3s ease-in-out infinite alternate,
+             reveal 3s ease-out forwards; /* aggiunto reveal */
+  
+  opacity: 0; /* parte invisibile */
+  margin: 0;
+  z-index: 2;
+}
+
+/* Glow già definito prima */
+@keyframes glow {
+  from {
+    text-shadow:
+      0 0 15px rgba(255,255,255,0.7),
+      0 0 30px rgba(255,255,255,0.5),
+      0 0 50px rgba(0,0,0,2),
+      0 0 70px rgba(0,0,0,2);
+  }
+  to {
+    text-shadow:
+      0 0 20px rgba(255,255,255,1),
+      0 0 40px rgba(255,255,255,0.8),
+      0 0 80px rgba(0,0,0,2),
+      0 0 100px rgba(0,0,0,2);
+  }
+}
+
+/* Nuovo: animazione reveal */
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
