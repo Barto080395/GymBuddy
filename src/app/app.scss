@@ -1,25 +1,39 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
 
 .container {
-  min-height: 100dvh; /* invece di 100vh */
+  min-height: 100vh;
+  min-height: 100dvh; /* viewport stabile su mobile */
   width: 100%;
+
   color: #f5f5f5;
   font-family: 'Poppins', sans-serif;
+
   display: flex;
   flex-direction: column;
   padding-top: 100px;
+
   position: relative;
   z-index: 1;
 }
 
+/* BACKGROUND FIXED ULTRA STABILE */
 .container::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url('/assets/icons/sfondo.webp') no-repeat center center;
+
+  background-image: url('/assets/icons/sfondo.webp');
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
+
   z-index: -1;
+
+  /* migliora stabilità su mobile */
+  transform: translateZ(0);
+  will-change: transform;
 }
