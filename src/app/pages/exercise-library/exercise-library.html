@@ -8,6 +8,7 @@
           <p *ngIf="ex.muscleGroup">Gruppo Muscolare: {{ ex.muscleGroup }}</p>
           <p *ngIf="ex.equipment">Attrezzatura: {{ ex.equipment }}</p>
           <img *ngIf="ex.gif" [src]="ex.gif" [alt]="ex.name" class="exercise-gif" height="50px" width="50px"/>
+          <p>{{ex.description}}</p>
         </div>
       </div>
     </app-accordion>

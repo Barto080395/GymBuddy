@@ -13,3 +13,12 @@ export interface Exercise {
     duration: number;
     exercises: Exercise[];
   }
+
+  export interface Exercise_Library {
+    id: string;
+    name: string;
+    muscleGroup: string;
+    equipment?: string;
+    gif?: string;
+    description?: string;
+  }
