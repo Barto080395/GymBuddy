@@ -11,5 +11,5 @@ import { FooterComponent } from './shared/footer/footer.component';
   styleUrls: ['./app.scss'], // corretto
 })
 export class App {
-  protected readonly title = signal('portfolioAngular');
+  protected readonly title = signal('GymBuddy');
 }
