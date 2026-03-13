@@ -13,7 +13,7 @@ body {
   width: 110vw;
   height: 110vh;
 
-  background-image: url('/assets/icons/sfondo.webp');
+  background-image: url('/assets/icons/sfondo-palestra.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,11 +22,6 @@ body {
 
   /* fix rendering safari */
   transform: translate3d(0,0,0);
-}
-@media (max-width: 768px) {
-  .background {
-    background-size: 90%;
-  }
 }
 
 /* contenuto */
