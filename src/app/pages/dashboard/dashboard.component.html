@@ -4,14 +4,14 @@
 
   <!-- Allenamento di oggi -->
   <div *ngIf="getTodayWorkout()" class="today-workout">
-    <strong>Oggi:</strong> {{ getTodayWorkout()?.workout }} alle {{ getTodayWorkout()?.time }}
+    <strong>Oggi:</strong> {{ getTodayWorkout()?.workout }}
   </div>
 
   <!-- Prossimi allenamenti -->
   <h3>Prossimi allenamenti</h3>
   <div class="upcoming">
     <div class="workout-card" *ngFor="let w of getRemainingWorkouts()">
-      <strong>{{ w.day }}:</strong> {{ w.workout }} alle {{ w.time }}
+      <strong>{{ w.day }}:</strong> {{ w.workout }} ore {{ w.time }}
       <img
         *ngIf="getTimeInMinutes(w.time) < 60"
         src="assets/icons/start.png"
