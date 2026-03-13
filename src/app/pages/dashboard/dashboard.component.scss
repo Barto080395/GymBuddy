@@ -12,6 +12,7 @@
 
   p {
     margin-bottom: 30px;
+    color: #fff;
   }
 
   h3 {
@@ -20,11 +21,10 @@
     text-align: left;
   }
 
-  /* INPUT */
   .stat-input {
     padding: 4px 6px;
     border-radius: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.2);
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
     width: 120px;
@@ -37,18 +37,17 @@
     box-shadow: 0 0 8px rgba(255, 69, 0, 0.6);
   }
 
-  /* GRID */
   .stats,
   .badges,
   .upcoming,
   .shortcuts {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* default: una colonna */
     gap: 20px;
     margin-bottom: 20px;
   }
 
-  /* CARD */
+  /* Card generiche */
   .stat-card,
   .badge-card,
   .workout-card {
@@ -57,7 +56,7 @@
     padding: 20px;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(255, 255, 0, 0.5);
+    box-shadow: 0 5px 15px rgb(255, 255, 0, 0.5);
     transition: transform 0.3s ease;
 
     i {
@@ -73,7 +72,6 @@
     }
   }
 
-  /* MODAL BUTTONS */
   .modal-buttons {
     margin-top: 20px;
     display: flex;
@@ -97,16 +95,19 @@
     box-shadow: 0 8px 22px rgba(255, 69, 0, 0.7), 0 0 12px rgba(255, 140, 0, 0.5);
   }
 
-  /* TODAY WORKOUT */
   .today-workout {
     font-weight: 800;
     font-size: 1.3rem;
-    color: #dfb025;
+    color: #dfb025; /* colore base oro */
     text-transform: uppercase;
+    display: inline-block;
+    position: relative;
     animation: fire-flicker 1.5s infinite alternate;
-    text-shadow: 0 0 2px #917f1c, 0 0 4px #b8860b;
+    text-shadow:
+      0 0 2px #917f1c,
+      0 0 4px #b8860b;
   }
-
+  
   @keyframes fire-flicker {
     0% {
       text-shadow: 0 0 4px #ffae42, 0 0 8px #110f0e, 0 0 12px #dcce87;
@@ -119,8 +120,10 @@
     }
   }
 
-  /* WORKOUT CARD */
+  /* Card dei workout dinamici */
   .workout-card {
+    text-align: center;
+
     ul {
       padding-left: 20px;
       margin-top: 8px;
@@ -138,7 +141,7 @@
     }
   }
 
-  /* SHORTCUT BUTTONS */
+  /* Pulsanti shortcuts */
   .shortcuts button {
     padding: 12px 25px;
     border-radius: 25px;
@@ -160,87 +163,54 @@
     }
   }
 
+  /* dashboard.component.scss oppure records-modal.component.scss */
+  @media (max-width: 768px) {
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px; /* Spazio tra label e input */
+    }
+
+    .stat-card strong {
+      min-width: 120px; /* opzionale: allinea le label solo su schermi piccoli */
+    }
+  }
+
   .start-icon {
     width: 20px;
     height: 20px;
     margin-left: 8px;
     vertical-align: middle;
   }
-}
 
-/* ===== TABLET ===== */
-
-@media (min-width: 768px) {
-  .stats,
-  .badges,
-  .upcoming,
-  .shortcuts {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    cursor: pointer;
-  }
-}
-
-/* ===== MOBILE ===== */
-
-@media (max-width: 768px) {
-  .dashboard {
-    padding: 20px;
+  /* Media query per desktop / tablet: più colonne */
+  @media (min-width: 768px) {
+    .stats,
+    .badges,
+    .upcoming,
+    .shortcuts {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      cursor: pointer;
+    }
   }
 
-  .stat-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
+  /* Miglioramenti responsivi */
+  @media (max-width: 500px) {
+    .dashboard {
+      padding: 20px;
+    }
 
-  .stat-input {
-    width: 90px;
-    font-size: 0.85rem;
-  }
+    .workout-card,
+    .stat-card,
+    .badge-card,
+    .shortcuts button {
+      padding: 15px;
+    }
 
-  .shortcuts button {
-    padding: 10px 16px;
-    font-size: 0.9rem;
-  }
-
-  .today-workout {
-    font-size: 1.1rem;
-  }
-}
-
-/* ===== SMALL MOBILE ===== */
-
-@media (max-width: 500px) {
-  .dashboard {
-    padding: 15px;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  h3 {
-    font-size: 1rem;
-  }
-
-  p {
-    font-size: 0.9rem;
-  }
-
-  .stat-card,
-  .badge-card,
-  .workout-card {
-    padding: 12px;
-  }
-
-  .shortcuts button {
-    font-size: 0.8rem;
-    padding: 8px 12px;
-  }
-
-  .start-icon {
-    width: 16px;
-    height: 16px;
+    .shortcuts button {
+      font-size: 0.9rem;
+      padding: 10px 18px;
+    }
   }
 }
