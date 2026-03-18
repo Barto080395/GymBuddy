@@ -7,8 +7,6 @@ import { StatsModalComponent } from '../../shared/modal/stats/stats-modal.compon
 import { RecordsModalComponent } from '../../shared/modal/records/records-modal.component';
 import { AccordionComponent } from '../../shared/Accordion/accordion.component';
 import { OnboardingComponent } from '../onboarding/onboarding.component';
-import { isPlatformBrowser } from '@angular/common';
-import { inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,7 +30,6 @@ export class DashboardComponent {
   selectedMuscleStats: { muscle: string; stats: any[] } | null = null;
   showOnboarding = true;
   todayWorkout = '';
-  platformId = inject(PLATFORM_ID);
 
   statsByMuscle = [
     {
@@ -131,11 +128,8 @@ export class DashboardComponent {
 
   async ngOnInit() {
     // Controlla se l'utente ha già visto l'onboarding
-    if (isPlatformBrowser(this.platformId)) {
-      const seen = localStorage.getItem('onboardingSeen');
-      this.showOnboarding = !seen;
-    }
-  
+    const seen = localStorage.getItem('onboardingSeen');
+    this.showOnboarding = !seen;
 
     const name = await this.dashboardService.fetchUserName();
     if (name) this.userName = name;
