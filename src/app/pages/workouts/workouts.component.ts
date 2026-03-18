@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { WorkoutCardComponent } from '../../shared/workout-card/workout-card.component';
 import { Workout } from '../../models/workout.model';
 import { CountdownComponent } from '../../shared/countdown/countdown.component';
+import { AccordionComponent } from '../../shared/Accordion/accordion.component';
 
 
 @Component({
   selector: 'app-workouts',
   standalone: true,
-  imports: [CommonModule, WorkoutCardComponent],
+  imports: [CommonModule, WorkoutCardComponent,AccordionComponent],
   templateUrl: './workouts.component.html',
   styleUrls: ['./workouts.component.scss'],
 })

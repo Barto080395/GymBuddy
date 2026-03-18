@@ -1,5 +1,5 @@
 .dashboard {
-  padding: 40px;
+  padding: 20px;
   color: #fff;
   font-family: 'Poppins', sans-serif;
 
@@ -43,7 +43,7 @@
   .shortcuts {
     display: grid;
     grid-template-columns: 1fr; /* default: una colonna */
-    gap: 20px;
+    gap: 12px;
     margin-bottom: 20px;
   }
 
@@ -106,6 +106,47 @@
     text-shadow:
       0 0 2px #917f1c,
       0 0 4px #b8860b;
+
+  
+    .today-input-wrapper {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+    }
+  
+    .today-input {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+      
+      &:focus {
+        border-color: #4caf50; // colore accento verde simile ai pulsanti
+        outline: none;
+      }
+    }
+  
+    .save-btn {
+      background-color: #4caf50; // colore accento verde
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+  
+      &:hover {
+        background-color: #45a049;
+      }
+  
+      &:active {
+        background-color: #3e8e41;
+      }
+    }
   }
   
   @keyframes fire-flicker {
@@ -123,7 +164,7 @@
   /* Card dei workout dinamici */
   .workout-card {
     text-align: center;
-
+    max-width: 400px;
     ul {
       padding-left: 20px;
       margin-top: 8px;
@@ -178,8 +219,8 @@
   }
 
   .start-icon {
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    height: 50px;
     margin-left: 8px;
     vertical-align: middle;
   }

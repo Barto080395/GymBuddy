@@ -1,0 +1,47 @@
+<div *ngIf="show" class="onboarding-modal">
+  <!-- Overlay -->
+  <div class="overlay" (click)="close()"></div>
+
+  <!-- Modal -->
+  <div class="modal-content">
+    <button *ngIf="step !== maxStep" class="skip-btn" (click)="close()">Salta</button>
+    <div class="background-glow"></div>
+
+    <!-- Progress -->
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="maxStep > 0 ? (step / maxStep) * 100 : 0"></div>
+    </div>
+
+    <!-- Contenuto -->
+    <div class="step-container" *ngIf="steps.length">
+      <h2>{{ steps[step].title }}</h2>
+
+      <p *ngIf="steps[step].description">
+        {{ steps[step].description }}
+      </p>
+
+      <ul *ngIf="steps[step].list?.length">
+        <li *ngFor="let item of steps[step].list">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Bottoni -->
+    <div class="nav-buttons">
+      <button *ngIf="step > 0" (click)="prev()">Indietro</button>
+      <button *ngIf="step < maxStep" (click)="next()">Avanti</button>
+      <button *ngIf="step === maxStep" (click)="close()">Fine</button>
+    </div>
+
+    <!-- Indicatori -->
+    <div class="step-indicators">
+      <span
+        *ngFor="let s of steps; let i = index"
+        [class.active]="i === step"
+        (click)="goToStep(i)"
+      >
+      </span>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ import { doc, getDoc } from 'firebase/firestore';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, NgIf, AsyncPipe],
+  imports: [CommonModule, NgIf],
   templateUrl: './profile.html',
   styleUrls: ['./profile.scss']
 })

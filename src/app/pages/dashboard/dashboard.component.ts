@@ -5,11 +5,21 @@ import { DashboardService } from '../../services/dashboard.service';
 import { FormsModule } from '@angular/forms';
 import { StatsModalComponent } from '../../shared/modal/stats/stats-modal.component';
 import { RecordsModalComponent } from '../../shared/modal/records/records-modal.component';
+import { AccordionComponent } from '../../shared/Accordion/accordion.component';
+import { OnboardingComponent } from '../onboarding/onboarding.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, StatsModalComponent,RecordsModalComponent, FormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    StatsModalComponent,
+    RecordsModalComponent,
+    FormsModule,
+    AccordionComponent,
+    OnboardingComponent,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
@@ -18,6 +28,8 @@ export class DashboardComponent {
   statsModalVisible = false;
   recordsModalVisible = false;
   selectedMuscleStats: { muscle: string; stats: any[] } | null = null;
+  showOnboarding = true;
+  todayWorkout = '';
 
   statsByMuscle = [
     {
@@ -91,12 +103,12 @@ export class DashboardComponent {
   ];
 
   upcomingWorkouts = [
-    { day: 'Lunedì', workout: 'Petto', time: '18:00',completed: true },
-    { day: 'Martedì', workout: 'Dorso', time: '18:00',completed: true },
-    { day: 'Mercoledì', workout: 'Gambe', time: '18:30',completed: true },
-    { day: 'Giovedì', workout: 'Spalle', time: '18:30',completed: true },
-    { day: 'Venerdì', workout: 'Bicipiti e Tricipiti', time: '18:00',completed: true },
-    { day: 'Sabato', workout: 'Cardio', time: '18:00',completed: true },
+    { day: 'Lunedì', workout: 'Petto', time: '18:00', completed: true },
+    { day: 'Martedì', workout: 'Dorso', time: '18:00', completed: true },
+    { day: 'Mercoledì', workout: 'Gambe', time: '18:30', completed: true },
+    { day: 'Giovedì', workout: 'Spalle', time: '18:30', completed: true },
+    { day: 'Venerdì', workout: 'Bicipiti e Tricipiti', time: '18:00', completed: true },
+    { day: 'Sabato', workout: 'Cardio', time: '18:00', completed: true },
   ];
 
   personalRecords = [
@@ -115,6 +127,10 @@ export class DashboardComponent {
   constructor(private dashboardService: DashboardService) {}
 
   async ngOnInit() {
+    // Controlla se l'utente ha già visto l'onboarding
+    const seen = localStorage.getItem('onboardingSeen');
+    this.showOnboarding = !seen;
+
     const name = await this.dashboardService.fetchUserName();
     if (name) this.userName = name;
 
@@ -122,24 +138,50 @@ export class DashboardComponent {
     if (stats) this.statsByMuscle = stats;
 
     const records = await this.dashboardService.getRecords();
-    if (records && records.length > 0)  this.personalRecords = records;
+    if (records && records.length > 0) this.personalRecords = records;
+
+    const savedToday = await this.dashboardService.fetchTodayWorkout();
+    if (savedToday) this.todayWorkout = savedToday;
   }
 
- // Restituisce l'allenamento di oggi (se ce n'è uno)
-getTodayWorkout() {
-  const todayIndex = new Date().getDay();
-  const days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
-  const today = days[todayIndex];
-  return this.upcomingWorkouts.find(w => w.day === today);
-}
+  onOnboardingClosed() {
+    this.showOnboarding = false;
+  }
 
-// Restituisce gli allenamenti futuri (escludendo quelli completati)
-getRemainingWorkouts() {
-  const todayIndex = new Date().getDay();
-  const days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
-  const remainingDays = days.slice(todayIndex);
-  return this.upcomingWorkouts.filter(w => remainingDays.includes(w.day));
-}
+  async saveTodayWorkout() {
+    if (!this.todayWorkout) return;
+
+    await this.dashboardService.saveTodayWorkout(this.todayWorkout);
+
+    // Aggiorna l'array degli allenamenti
+    const todayIndex = new Date().getDay();
+    const days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+    const today = days[todayIndex];
+
+    const existing = this.upcomingWorkouts.find((w) => w.day === today);
+    if (existing) {
+      existing.workout = this.todayWorkout;
+      existing.completed = true;
+    } else {
+      this.upcomingWorkouts.push({
+        day: today,
+        workout: this.todayWorkout,
+        time: '18:00',
+        completed: true,
+      });
+    }
+
+    alert('Allenamento di oggi salvato! ✅');
+  }
+
+  getRemainingWorkouts() {
+    const todayIndex = new Date().getDay();
+    const days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+
+    // escludiamo oggi
+    const remainingDays = days.slice(todayIndex + 1);
+    return this.upcomingWorkouts.filter((w) => remainingDays.includes(w.day));
+  }
 
   // Converte una stringa tipo "45" o "1h 30m" in minuti
   getTimeInMinutes(time: string | number | undefined): number {
@@ -182,12 +224,12 @@ getRemainingWorkouts() {
   async saveAndClose() {
     await this.dashboardService.saveStats(this.statsByMuscle);
     this.closeModal();
-    alert("Statistiche aggiornate! 😊")
+    alert('Statistiche aggiornate! 😊');
   }
 
   async saveRecords() {
     await this.dashboardService.saveRecords(this.personalRecords);
     this.closeRecordsModal();
-    alert("Record aggiornati! 😊")
+    alert('Record aggiornati! 😊');
   }
 }

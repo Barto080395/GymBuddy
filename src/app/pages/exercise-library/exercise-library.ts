@@ -19,7 +19,7 @@ export class ExerciseLibrary {
       description: 'Focalizza la parte superiore del petto, migliora la definizione e l’estetica del torace.' },
     { id: '3', name: 'Chest Press', muscleGroup: 'Petto', equipment: 'Macchina', gif: 'assets/gif/chess-press.png',
       description: 'Esercizio guidato per petto e tricipiti, ottimo per principianti o riscaldamento.' },
-    { id: '4', name: 'Croci ai Cavi', muscleGroup: 'Petto', equipment: 'Cavi', gif: 'assets/gif/panca-piana.png',
+    { id: '4', name: 'Croci ai Cavi', muscleGroup: 'Petto', equipment: 'Cavi', gif: 'assets/gif/croci.png',
       description: 'Isola i pettorali durante il movimento, migliora la definizione e l’allungamento muscolare.' },
     { id: '5', name: 'Push-up', muscleGroup: 'Petto', equipment: 'Corpo Libero', gif: 'assets/gif/piegamenti-sulle-braccia.png',
       description: 'Classico esercizio a corpo libero per forza e resistenza di petto, spalle e tricipiti.' },

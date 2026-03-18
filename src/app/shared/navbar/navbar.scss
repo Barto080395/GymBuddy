@@ -16,6 +16,11 @@
 .logo img {
   height: 40px;
   margin-right: 20px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.08);
+    transition: transform 0.3s ease;
+  }
 }
 
 .pill-container {

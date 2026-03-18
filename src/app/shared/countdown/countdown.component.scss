@@ -1,21 +1,111 @@
 .countdown-container {
-    text-align: center;
-    padding: 12px;
-    border-radius: 10px;
-    background-color: rgba(0,0,0,0.6);
-    color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  background-color: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+
+  .status {
+    margin: 5px 0;
     font-size: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  
-    .status {
-      margin: 5px 0;
-      font-size: 1rem;
-    }
-  
-    .finished {
-      color: #4caf50; // verde brillante quando finito
-      font-weight: 700;
-      font-size: 1.1rem;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-    }
   }
+
+  .controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  /* BOTTONI CONTROLLO TIMER */
+  .control-btn {
+    background: transparent;     /* niente background */
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 10px;         /* bordi arrotondati */
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .control-btn svg {
+    width: 22px;
+    height: 22px;
+    color: white;
+  }
+
+  .control-btn:hover {
+    border-color: #fff;
+    transform: scale(1.08);
+  }
+
+  .control-btn:active {
+    transform: scale(0.92);
+  }
+
+  .stop-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* FINISHED ROW */
+
+  .finished-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .approved-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* RELOAD BUTTON */
+
+  .reload-button {
+    background: white;
+    border-radius: 50%;
+    border: none;
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    transition: all 0.2s ease;
+  }
+
+  .reload-button svg {
+    width: 24px;
+    height: 24px;
+    color: #444;
+  }
+
+  .reload-button:hover {
+    transform: rotate(15deg) scale(1.05);
+  }
+
+  .reload-button:active {
+    transform: scale(0.9);
+  }
+
+  .finished {
+    color: #4caf50;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+}

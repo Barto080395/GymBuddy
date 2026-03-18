@@ -87,6 +87,46 @@ export class DashboardService {
   }
 
   // ==============================
+  // Recupera il workout di oggi
+  // ==============================
+  async fetchTodayWorkout(): Promise<string | null> {
+    const user = auth.currentUser;
+    if (!user) return null;
+
+    try {
+      const docRef = doc(db, 'todayWorkouts', user.uid); // raccolta separata per allenamenti di oggi
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        return docSnap.data()['workout'] || null;
+      }
+
+      return null;
+    } catch (error) {
+      console.error('Errore recupero allenamento di oggi:', error);
+      return null;
+    }
+  }
+
+  // ==============================
+  // Salva il workout di oggi
+  // ==============================
+  async saveTodayWorkout(workout: string): Promise<void> {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    try {
+      const docRef = doc(db, 'todayWorkouts', user.uid);
+      await setDoc(docRef, {
+        workout,
+        updatedAt: new Date(),
+      });
+    } catch (error) {
+      console.error('Errore salvataggio allenamento di oggi:', error);
+    }
+  }
+
+  // ==============================
   // Salva Records
   // ==============================
 
