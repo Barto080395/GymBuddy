@@ -1,11 +1,9 @@
 {
-  "name": "GymBuddy",
-  "short_name": "GymBuddy",
+  "name": "gymbuddy",
+  "short_name": "gymbuddy",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
-  "theme_color": "#1976d2",
-  "background_color": "#ffffff",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
