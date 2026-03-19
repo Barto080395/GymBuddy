@@ -5,12 +5,14 @@
     <h2>{{ userData.nome }} {{ userData.cognome }}</h2>
     <p>📧 {{ userData.email }}</p>
     <p *ngIf="userData.eta">🎂 Età: {{ userData.eta }}</p>
-      <p *ngIf="userData.sesso">⚧ Sesso: {{ userData.sesso }}</p>
-      <p *ngIf="userData.altezza">📏 Altezza: {{ userData.altezza }} cm</p>
-      <p *ngIf="userData.peso">⚖️ Peso: {{ userData.peso }} kg</p>
-      <p *ngIf="userData.obiettivo">🎯 Obiettivo: {{ userData.obiettivo }}</p>
-      <p *ngIf="userData.livello">💪 Livello: {{ userData.livello }}</p>
-      <p *ngIf="userData.dataNascita">📅 Data di nascita: {{ userData.dataNascita }}</p>
-      <p *ngIf="userData.note">📝 Note: {{ userData.note }}</p>
+    <p *ngIf="userData.sesso">⚧ Sesso: {{ userData.sesso }}</p>
+    <p *ngIf="userData.altezza">📏 Altezza: {{ userData.altezza }} cm</p>
+    <p *ngIf="userData.peso">⚖️ Peso: {{ userData.peso }} kg</p>
+    <p *ngIf="userData.obiettivo">🎯 Obiettivo: {{ userData.obiettivo }}</p>
+    <p *ngIf="userData.livello">💪 Livello: {{ userData.livello }}</p>
+    <p *ngIf="userData.dataNascita">
+      📅 Data di nascita: {{ userData.dataNascita | date : 'dd/MM/yyyy' }}
+    </p>
+    <p *ngIf="userData.note">📝 Note: {{ userData.note }}</p>
   </div>
 </div>

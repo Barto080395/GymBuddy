@@ -20,7 +20,11 @@ export class Profile implements OnInit {
       const docRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        this.userData = docSnap.data();
+        const data = docSnap.data();
+        this.userData = {
+          ...data,
+          dataNascita: data['dataNascita'] ? data['dataNascita'].toDate() : null
+        };
       }
     }
   }

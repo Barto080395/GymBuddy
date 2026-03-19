@@ -1,57 +1,93 @@
 <h1 class="hero-title">GymBuddy🏋️‍♂️</h1>
+
 <div class="auth-container">
   <h2>Registrati</h2>
   <form (ngSubmit)="register()" #registerForm="ngForm">
 
-    <!-- Griglia 2 colonne -->
     <div class="form-row">
-      <input type="text" name="nome" [(ngModel)]="nome" placeholder="Nome" required />
-      <input type="text" name="cognome" [(ngModel)]="cognome" placeholder="Cognome" required />
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="nome" name="nome" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Cognome</mat-label>
+        <input matInput [(ngModel)]="cognome" name="cognome" required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="email" name="email" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" required>
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Età</mat-label>
+        <input matInput type="number" [(ngModel)]="eta" name="eta">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sesso</mat-label>
+        <mat-select [(ngModel)]="sesso" name="sesso" required>
+          <mat-option value="M">Maschile</mat-option>
+          <mat-option value="F">Femminile</mat-option>
+          <mat-option value="Altro">Altro</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <div class="form-row">
-      <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required />
-      <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required />
+      <mat-form-field appearance="outline">
+        <mat-label>Altezza (cm)</mat-label>
+        <input matInput type="number" [(ngModel)]="altezza" name="altezza">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Peso (kg)</mat-label>
+        <input matInput type="number" [(ngModel)]="peso" name="peso">
+      </mat-form-field>
     </div>
 
-    <div class="form-row">
-      <input type="number" name="eta" [(ngModel)]="eta" placeholder="Età" />
-      <select name="sesso" [(ngModel)]="sesso" required>
-        <option value="" disabled>Seleziona sesso</option>
-        <option value="M">Maschile</option>
-        <option value="F">Femminile</option>
-        <option value="Altro">Altro</option>
-      </select>
+    <mat-form-field appearance="outline">
+      <mat-label>Obiettivo fitness</mat-label>
+      <mat-select [(ngModel)]="obiettivo" name="obiettivo" required>
+        <mat-option value="dimagrimento">Dimagrimento</mat-option>
+        <mat-option value="massa">Massa muscolare</mat-option>
+        <mat-option value="resistenza">Resistenza</mat-option>
+        <mat-option value="generale">Generale</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Livello</mat-label>
+      <mat-select [(ngModel)]="livello" name="livello" required>
+        <mat-option value="principiante">Principiante</mat-option>
+        <mat-option value="intermedio">Intermedio</mat-option>
+        <mat-option value="avanzato">Avanzato</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    <div class="form-row">
-      <input type="number" name="altezza" [(ngModel)]="altezza" placeholder="Altezza (cm)" />
-      <input type="number" name="peso" [(ngModel)]="peso" placeholder="Peso (kg)" />
-    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Data di nascita</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="dataNascita" name="dataNascita">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-    <div class="form-row">
-      <select name="obiettivo" [(ngModel)]="obiettivo" required>
-        <option value="" disabled>Obiettivo fitness</option>
-        <option value="dimagrimento">Dimagrimento</option>
-        <option value="massa">Massa muscolare</option>
-        <option value="resistenza">Resistenza</option>
-        <option value="generale">Generale</option>
-      </select>
-      <select name="livello" [(ngModel)]="livello" required>
-        <option value="" disabled>Livello</option>
-        <option value="principiante">Principiante</option>
-        <option value="intermedio">Intermedio</option>
-        <option value="avanzato">Avanzato</option>
-      </select>
-    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Note personali</mat-label>
+      <textarea matInput [(ngModel)]="note" name="note"></textarea>
+    </mat-form-field>
 
-    <input type="date" name="dataNascita" [(ngModel)]="dataNascita" placeholder="Data di nascita" />
-    <textarea name="note" [(ngModel)]="note" placeholder="Note personali"></textarea>
+    <button mat-raised-button color="primary" type="submit">Registrati</button>
 
-    <button type="submit">Registrati</button>
     <a routerLink="/login">Hai già un account? Accedi</a>
-
     <p class="error" *ngIf="error">{{ error }}</p>
   </form>
 </div>
