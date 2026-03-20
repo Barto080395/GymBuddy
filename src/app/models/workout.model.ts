@@ -4,6 +4,8 @@ export interface Exercise {
     reps: number;
     weight?: number;
     running?: boolean;
+    duration?: number; // in secondi
+    difficulty?: 'easy' | 'medium' | 'hard';  
   }
   
   export interface Workout {

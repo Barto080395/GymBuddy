@@ -4,12 +4,13 @@ import { WorkoutCardComponent } from '../../shared/workout-card/workout-card.com
 import { Workout } from '../../models/workout.model';
 import { CountdownComponent } from '../../shared/countdown/countdown.component';
 import { AccordionComponent } from '../../shared/Accordion/accordion.component';
+import { WorkoutModalComponent } from '../../shared/modal/workout/workout-modal.component';
 
 
 @Component({
   selector: 'app-workouts',
   standalone: true,
-  imports: [CommonModule, WorkoutCardComponent,AccordionComponent],
+  imports: [CommonModule, WorkoutCardComponent,AccordionComponent,WorkoutModalComponent],
   templateUrl: './workouts.component.html',
   styleUrls: ['./workouts.component.scss'],
 })
@@ -90,4 +91,8 @@ export class WorkoutsComponent {
       ]
     }
   ];
+  
+  selectedExercise: any = null;
+  showStartModal = false;
+  showCountdownModal = false; // ✅ aggiungi questa riga
 }

@@ -1,0 +1,27 @@
+<!-- Start Modal -->
+<div class="overlay" *ngIf="showStart">
+  <div class="modal">
+    <h2>{{ exercise?.name }} - Pronto per iniziare?</h2>
+    <div class="modal-actions">
+    <button class="button-start" (click)="startCountdown()">Inizia</button>
+    <button class="button-close" (click)="closeModal()">Annulla</button>
+</div>
+  </div>
+</div>
+
+<!-- Countdown Modal -->
+<div class="overlay" *ngIf="showCountdown">
+  <div class="modal countdown-modal">
+    <h2>{{ exercise?.name }}💪</h2>
+    <app-countdown
+      [sets]="exercise.sets"
+      [duration]="countdownDuration"
+      [restDuration]="restDuration"
+      [exerciseName]="exercise.name"
+      (finished)="closeModal()"
+    >
+    </app-countdown>
+
+    <button class="button-close" (click)="closeModal()">Chiudi</button>
+  </div>
+</div>

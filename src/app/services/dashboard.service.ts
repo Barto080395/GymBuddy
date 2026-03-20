@@ -8,6 +8,7 @@ import { auth, db } from '../firebase';
 @Injectable({
   providedIn: 'root', // rende il servizio disponibile globalmente
 })
+
 export class DashboardService {
   userName = '';
 

@@ -1,13 +1,10 @@
 <div *ngFor="let exercise of workout.exercises" class="exercise-item-horizontal">
   <h4>{{ exercise.name }} - {{ exercise.sets }}x{{ exercise.reps }}</h4>
 
-  <button 
-  *ngIf="!exercise.running" 
-  (click)="exercise.running = true" 
-  class="button-start">
-  <img src="assets/icons/start.png" alt="start icon" class="icon-start"/>
-  Avvia serie
-</button>
+  <button *ngIf="!exercise.running" (click)="start(exercise)" class="button-start">
+    <img src="assets/icons/start.png" alt="start icon" class="icon-start" />
+    Avvia serie
+  </button>
 
   <app-countdown
     *ngIf="exercise.running"

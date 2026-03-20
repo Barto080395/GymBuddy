@@ -3,14 +3,11 @@
 
   <ng-container *ngIf="workouts && workouts.length; else noWorkouts">
 
-    <app-accordion
-      *ngFor="let w of workouts"
-      [title]="w.title">
-
+    <app-accordion *ngFor="let w of workouts" [title]="w.title">
       <app-workout-card
-        [workout]="w">
+        [workout]="w"
+        (startExercise)="selectedExercise = $event; showStartModal = true">
       </app-workout-card>
-
     </app-accordion>
 
   </ng-container>
@@ -18,4 +15,12 @@
   <ng-template #noWorkouts>
     <p>Nessun allenamento trovato. 🏋️‍♂️</p>
   </ng-template>
+
+  <!-- MODALE GLOBALE -->
+  <app-workout-modal
+    [exercise]="selectedExercise"
+    [showStart]="showStartModal"
+    [showCountdown]="showCountdownModal"
+    (close)="showStartModal = false; showCountdownModal = false">
+  </app-workout-modal>
 </div>
