@@ -1,18 +1,101 @@
-<div class="profile-container" *ngIf="userData">
-  <h1>Profilo Utente 👤</h1>
-  <div class="profile-card">
-    <img src="assets/avatar/happy-man-white.jpg" alt="Foto Profilo" class="profile-image" />
-    <h2>{{ userData.nome }} {{ userData.cognome }}</h2>
-    <p>📧 {{ userData.email }}</p>
-    <p *ngIf="userData.eta">🎂 Età: {{ userData.eta }}</p>
-    <p *ngIf="userData.sesso">⚧ Sesso: {{ userData.sesso }}</p>
-    <p *ngIf="userData.altezza">📏 Altezza: {{ userData.altezza }} cm</p>
-    <p *ngIf="userData.peso">⚖️ Peso: {{ userData.peso }} kg</p>
-    <p *ngIf="userData.obiettivo">🎯 Obiettivo: {{ userData.obiettivo }}</p>
-    <p *ngIf="userData.livello">💪 Livello: {{ userData.livello }}</p>
-    <p *ngIf="userData.dataNascita">
-      📅 Data di nascita: {{ userData.dataNascita | date : 'dd/MM/yyyy' }}
-    </p>
-    <p *ngIf="userData.note">📝 Note: {{ userData.note }}</p>
+<div class="loading-state" *ngIf="loading">
+  <div class="spinner"></div>
+  <p>Caricamento dati in corso...</p>
+</div>
+
+<div class="profile-container" *ngIf="!loading && userData">
+  <div class="form-card">
+    <div class="header-section">
+      <h1>{{ editMode() ? 'Modifica Profilo' : 'Scheda Profilo' }}</h1>
+      <button class="btn-edit" *ngIf="!editMode()" (click)="toggleEdit()">✏️ Modifica</button>
+    </div>
+    <div class="form-header">
+      <img src="assets/avatar/happy-man-white.jpg" alt="Foto Profilo" class="profile-image" />
+      <div>
+        <h2 style="font-size: 1.5rem">{{ userData.nome }} {{ userData.cognome }}</h2>
+        <p style="color: #efabff; font-weight: bold; margin-top: 10px">{{ userData.email }}</p>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="input-group">
+        <label>Età</label>
+        <div class="data-field" *ngIf="!editMode()">{{ userData.eta || 'N/D' }} anni</div>
+        <input class="edit-input" *ngIf="editMode()" [(ngModel)]="editData.eta" type="number" />
+      </div>
+
+      <div class="input-group">
+        <label>Sesso</label>
+        <div class="data-field" *ngIf="!editMode()">{{ userData.sesso || 'N/D' }}</div>
+        <select class="edit-input" *ngIf="editMode()" [(ngModel)]="editData.sesso">
+          <option value="Uomo">Uomo</option>
+          <option value="Donna">Donna</option>
+          <option value="Altro">Altro</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Altezza (cm)</label>
+        <div class="data-field" *ngIf="!editMode()">{{ userData.altezza || 'N/D' }} cm</div>
+        <input class="edit-input" *ngIf="editMode()" [(ngModel)]="editData.altezza" type="number" />
+      </div>
+
+      <div class="input-group">
+        <label>Peso (kg)</label>
+        <div class="data-field" *ngIf="!editMode()">{{ userData.peso || 'N/D' }} kg</div>
+        <input class="edit-input" *ngIf="editMode()" [(ngModel)]="editData.peso" type="number" />
+      </div>
+
+      <div class="input-group">
+        <label>Obiettivo</label>
+        <div class="data-field" *ngIf="!editMode()">{{ userData.obiettivo || 'N/D' }}</div>
+        <input class="edit-input" *ngIf="editMode()" [(ngModel)]="editData.obiettivo" />
+      </div>
+
+      <div class="input-group">
+        <label>Livello</label>
+        <div class="data-field" *ngIf="!editMode()">{{ userData.livello || 'N/D' }}</div>
+        <select class="edit-input" *ngIf="editMode()" [(ngModel)]="editData.livello">
+          <option value="Principiante">Principiante</option>
+          <option value="Intermedio">Intermedio</option>
+          <option value="Avanzato">Avanzato</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Data di Nascita</label>
+        <div class="data-field" *ngIf="!editMode()">
+          {{ userData.dataNascita | date : 'dd/MM/yyyy' }}
+        </div>
+        <input
+          class="edit-input"
+          *ngIf="editMode()"
+          type="date"
+          [(ngModel)]="editData.dataNascita"
+        />
+      </div>
+
+      <div class="input-group" style="grid-column: 1 / -1">
+        <label>Note aggiuntive</label>
+        <div class="data-field" *ngIf="!editMode()" style="min-height: 60px">
+          {{ userData.note || 'Nessuna nota presente.' }}
+        </div>
+        <textarea
+          class="edit-input"
+          *ngIf="editMode()"
+          [(ngModel)]="editData.note"
+          rows="3"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-actions" *ngIf="editMode()">
+      <button class="btn-save" (click)="salva()">💾 Salva</button>
+      <button class="btn-cancel" (click)="annulla()">❌ Annulla</button>
+    </div>
   </div>
+</div>
+
+<div class="loading-state" *ngIf="!loading && !userData">
+  <p>⚠️ Impossibile caricare il profilo. Controlla la tua connessione.</p>
 </div>
